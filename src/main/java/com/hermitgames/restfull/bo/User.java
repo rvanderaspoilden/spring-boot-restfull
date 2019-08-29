@@ -1,61 +1,51 @@
 package com.hermitgames.restfull.bo;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
-@Document(collection = "users")
+@Entity
+@Table(name = "account", schema = "public")
 public class User {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private String name;
+    private String username;
 
-    private Integer age;
+    private String password;
 
-    private String img;
+    private LocalDateTime creation_date;
 
-    @Field(value = "profession")
-    private String job;
-
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getJob() {
-        return job;
+    public LocalDateTime getCreation_date() {
+        return creation_date;
     }
 
-    public void setJob(String job) {
-        this.job = job;
+    public void setCreation_date(LocalDateTime creation_date) {
+        this.creation_date = creation_date;
     }
 }

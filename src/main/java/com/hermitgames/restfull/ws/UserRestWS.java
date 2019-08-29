@@ -1,12 +1,17 @@
 package com.hermitgames.restfull.ws;
 
+import com.google.common.base.Charsets;
+import com.google.common.hash.Hashing;
+import com.google.common.hash.HashingInputStream;
 import com.hermitgames.restfull.bo.User;
 import com.hermitgames.restfull.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.MessageDigest;
 import java.util.List;
 
 @RestController
@@ -18,5 +23,10 @@ public class UserRestWS {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public List<User> getUser() {
         return this.userService.getAllUsers();
+    }
+
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    public User saveUser(@RequestBody User user) {
+        return this.userService.createUser(user);
     }
 }
